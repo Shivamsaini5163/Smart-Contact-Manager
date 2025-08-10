@@ -1,0 +1,17 @@
+body{
+    background: #17d1ea;
+}
+.bg-primary{
+    background: blue;
+}
+.banner{
+    width: 100%;
+    height: 93vh;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../image/bghome.jpg") no-repeat center center;
+    background-size: cover;
+}
+.my-card{
+    padding: 20px;
+    background: white;
+}
