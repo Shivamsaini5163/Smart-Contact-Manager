@@ -22,7 +22,8 @@ body{
 }
 
 .card{
-    height: 400px;
+    top:30px;
+    height: 410px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
@@ -92,4 +93,52 @@ input:focus{
 
 .links a{
     margin-left: 4px;
+}
+/* Sidebar style */
+@media only screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background-color: cornflowerblue;
+        position: fixed;
+        height: 100%;
+        padding-top: 45px;
+    }
+    .content{
+        margin-left: 0 !important;
+    }
+}
+
+.sidebar{
+    width: 18%;
+    background-color: cornflowerblue;
+    position: fixed;
+    height: 100%;
+    padding-top: 45px;
+}
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: white;
+}
+.sidebar a:hover{
+    background-color: blueviolet;
+    color: white;
+}
+.sidebar .divider{
+    height: 0.5px;
+    width: 100%;
+    background-color: blue;
+}
+.content{
+    margin-left: 20%;
+}
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 30px;
+    cursor: pointer;
 }

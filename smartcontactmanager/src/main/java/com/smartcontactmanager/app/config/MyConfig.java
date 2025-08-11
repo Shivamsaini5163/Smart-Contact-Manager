@@ -36,7 +36,10 @@ public class MyConfig {
                         .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/**").permitAll()
                 )
-                .formLogin(form -> form.loginPage("/signin").permitAll())
+                .formLogin(form -> form.loginPage("/signin")  // custom login page
+                        .loginProcessingUrl("/dologin") // form action URL
+                        .defaultSuccessUrl("/user/index") // after login success
+                        .permitAll())
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }

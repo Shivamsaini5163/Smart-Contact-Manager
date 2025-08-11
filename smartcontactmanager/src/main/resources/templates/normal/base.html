@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title th:text="${title}">Base HTML</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -26,20 +26,36 @@
                 <a class="nav-link" th:href="@{/}"> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link disabled"><span th:text="${user.name}"></span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link disabled" href="/user/index">Login</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link disabled" th:href="@{/signup}">Sign Up</a>
+                <a class="nav-link disabled" th:href="@{/logout}">Log Out</a>
             </li>
         </ul>
     </div>
 </nav>
 <!--End navbar-->
 
-<div th:replace="${content}"></div>
+<!--sidebar-->
+<div class="sidebar">
+    <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+    <a href="" class="item"><i class="fa-solid fa-house"></i>  Home</a>
+    <a href="" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
+    <a href="" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
+    <a href="" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
+    <a href="" class="item"><i class="fa-solid fa-gear"></i>  Settings</a>
+    <a href="" class="item"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
+    <div class="divider"></div>
+</div>
+<!--END sidebar-->
+
+<!--Content area-->
+<div class="content">
+    <i onclick="toggleSidebar()" class="fas fa-bars"></i>
+    <div th:replace="${content}"></div>
+</div>
+<!--End Content area-->
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
