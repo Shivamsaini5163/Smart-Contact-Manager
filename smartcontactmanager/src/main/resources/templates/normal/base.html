@@ -14,7 +14,7 @@
 </head>
 <body>
 <!--navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Smart Contact Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,21 +37,28 @@
 <!--End navbar-->
 
 <!--sidebar-->
-<div class="sidebar">
+<div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
-    <a href="" class="item"><i class="fa-solid fa-house"></i>  Home</a>
+    <a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>  Home</a>
     <a href="" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
-    <a href="" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
+    <a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
     <a href="" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
     <a href="" class="item"><i class="fa-solid fa-gear"></i>  Settings</a>
-    <a href="" class="item"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
+    <a th:href="@{/logout}" class="item"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
     <div class="divider"></div>
 </div>
 <!--END sidebar-->
 
 <!--Content area-->
-<div class="content">
+<div class="content mt-5">
     <i onclick="toggleSidebar()" class="fas fa-bars"></i>
+    <!--message box-->
+    <div th:if="${session.message}" class="container">
+        <div class="alert alert-success text-center" th:classappend="${session.message.type}" role="alert">
+            <span th:text="${session.message.content}"></span>
+        </div>
+    </div>
+    <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
     <div th:replace="${content}"></div>
 </div>
 <!--End Content area-->

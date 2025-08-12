@@ -1,5 +1,5 @@
 body{
-    background: #17d1ea;
+    background: #23d7a1;
 }
 .bg-primary{
     background: blue;
@@ -115,6 +115,7 @@ input:focus{
     position: fixed;
     height: 100%;
     padding-top: 45px;
+    z-index: 99999999999;
 }
 .sidebar a{
     display: block;

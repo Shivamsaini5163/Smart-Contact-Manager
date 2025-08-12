@@ -13,6 +13,7 @@
                     <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
                         <p th:text="${session.message.content}"></p>
                     </div>
+                    <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
                     <div class="container text-center">
                         <img style="width: 80px" alt="image" th:src="@{/image/register.png}"/>
                     </div>

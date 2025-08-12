@@ -112,8 +112,7 @@ public class User {
                 ", role='" + role + '\'' +
                 ", enabled=" + enabled +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", about='" + about + '\'' +
-                ", contacts=" + contacts +
+                ", about='" + about +
                 '}';
     }
 }
