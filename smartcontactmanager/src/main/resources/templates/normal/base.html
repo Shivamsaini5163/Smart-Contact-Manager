@@ -40,7 +40,7 @@
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
     <a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>  Home</a>
-    <a href="" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
+    <a th:href="@{/user/show-contacts}" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
     <a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
     <a href="" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
     <a href="" class="item"><i class="fa-solid fa-gear"></i>  Settings</a>
@@ -51,7 +51,7 @@
 
 <!--Content area-->
 <div class="content mt-5">
-    <i onclick="toggleSidebar()" class="fas fa-bars"></i>
+    <i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
     <!--message box-->
     <div th:if="${session.message}" class="container">
         <div class="alert alert-success text-center" th:classappend="${session.message.type}" role="alert">

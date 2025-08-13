@@ -1,5 +1,6 @@
 package com.smartcontactmanager.app.controller;
 
+import com.smartcontactmanager.app.dao.ContactRepository;
 import com.smartcontactmanager.app.dao.UserRepository;
 import com.smartcontactmanager.app.entities.Contact;
 import com.smartcontactmanager.app.entities.User;
@@ -7,6 +8,9 @@ import com.smartcontactmanager.app.helper.Message;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +22,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ContactRepository contactRepository;
     //method for adding common data to response
     @ModelAttribute
    public void addCommonData(Model model,Principal principal){
@@ -81,5 +88,19 @@ public class UserController {
             session.setAttribute("message", new Message("Something went wrong!!! Try again...","danger"));
         }
         return "normal/add_contact_form";
+    }
+    //show contacts handler
+    @GetMapping("/show-contacts/{page}")
+    public String showContact(@PathVariable("page") Integer page, Model model, Principal principal){
+        model.addAttribute("title", "View Contacts");
+        //get contacts of those user which is login only
+        String userName=principal.getName();
+        User user=this.userRepository.getUserByUserName(userName);
+        Pageable pageRequest=PageRequest.of(page, 5);
+        Page<Contact> contacts=this.contactRepository.findContactsByUser(user.getId(),pageRequest);
+        model.addAttribute("contacts",contacts);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("totalPages",contacts.getTotalPages());
+        return "normal/show_contacts";
     }
 }
