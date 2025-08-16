@@ -50,7 +50,7 @@ public class HomeController {
             }
             user.setRole("ROLE_USER");
             user.setEnabled(true);
-            user.setImageUrl("default.png");
+            user.setImageUrl("defaultdp.avif");
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             System.out.println("Agreement "+agreement);

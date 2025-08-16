@@ -26,6 +26,9 @@
                 <a class="nav-link" th:href="@{/}"> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
+                <img style="width: 40px;height: 40px;" class="my_profile_picture" th:src="@{'/image/'+${user.imageUrl}}" alt="profile photo">
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link disabled"><span th:text="${user.name}"></span></a>
             </li>
             <li class="nav-item active">
@@ -40,9 +43,9 @@
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
     <a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>  Home</a>
-    <a th:href="@{/user/show-contacts}" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
+    <a th:href="@{/user/show-contacts/0}" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
     <a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
-    <a href="" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
+    <a th:href="@{/user/profile}" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
     <a href="" class="item"><i class="fa-solid fa-gear"></i>  Settings</a>
     <a th:href="@{/logout}" class="item"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
     <div class="divider"></div>
@@ -64,6 +67,26 @@
 <!--End Content area-->
 
 <!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function deleteContact(cid) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/user/delete/" + cid;
+            }else {
+                Swal.fire("Your Contact is safe!")
+            }
+        });
+    }
+</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

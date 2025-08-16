@@ -21,13 +21,22 @@
                 </thead>
                 <tbody>
                 <tr th:each="c : ${contacts}">
-                    <th scope="row" th:text="${'SCM2025'+c.cid}"></th>
-                    <td th:text="${c.name}"></td>
-                    <td th:text="${c.email}"></td>
+                    <th scope="row" th:text="${'SCMUSER'+c.cid}"></th>
+                    <td>
+                        <img class="my_profile_picture" th:src="@{'/image/'+${c.image}}" alt="profile photo">
+                        <span th:text="${c.name}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{'/user/contact/'+${c.cid}}">
+                            <span th:text="${c.email}"></span>
+                        </a>
+                    </td>
                     <td th:text="${c.phone}"></td>
                     <td>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <button class="btn btn-primary btn-sm">Update</button>
+                        <button th:onclick="|deleteContact(${c.cid})|" class="btn btn-danger btn-sm">Delete</button>
+                        <form th:action="@{'/user/update-contact/'+${c.cid}}" class="mt-2" method="post">
+                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

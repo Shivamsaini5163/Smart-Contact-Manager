@@ -6,7 +6,19 @@
 </head>
 <body>
 <section>
-    <h1>This is Private Dashboard</h1>
+    <div class="card-contacts mr-3 ml-3">
+        <div class="card-body">
+            <div class="container text-center my-5">
+                <div class="container text-center">
+                    <img style="width: 200px;height: 200px;" class="my_profile_picture" th:src="@{'/image/'+'contact_dashboard.png'}" alt="profile photo">
+                </div>
+                <h1 class="text-center mt-3 text-secondary">
+                    Start Adding your Contacts on Cloud...
+                </h1>
+                <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 btn-block text-uppercase">Add New Contact</a>
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>
