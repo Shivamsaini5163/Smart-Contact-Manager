@@ -150,3 +150,16 @@ input:focus{
     border-radius: 50%;
     border: 1px solid black;
 }
+/*search css*/
+.search-result{
+    position: absolute;
+    background: #23d7a1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid gray;
+    display: none;
+}
+
+.activate{
+    background: blueviolet;
+}

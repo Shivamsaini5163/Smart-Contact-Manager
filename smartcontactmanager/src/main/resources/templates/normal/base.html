@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title th:text="${title}">Base HTML</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <!--navbar-->
@@ -42,12 +46,12 @@
 <!--sidebar-->
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
-    <a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>  Home</a>
-    <a th:href="@{/user/show-contacts/0}" class="item"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
-    <a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
-    <a th:href="@{/user/profile}" class="item"><i class="fa-regular fa-user"></i>  Your Profile</a>
-    <a href="" class="item"><i class="fa-solid fa-gear"></i>  Settings</a>
-    <a th:href="@{/logout}" class="item"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
+    <a id="home-link" th:href="@{/user/index}" class="item activate"><i class="fa-solid fa-house"></i>  Home</a>
+    <a id="view-link" th:href="@{/user/show-contacts/0}" class="item activate"><i class="fa-solid fa-users-viewfinder"></i>  View Contact</a>
+    <a id="add-link" th:href="@{/user/add-contact}" class="item activate"><i class="fa-solid fa-user-plus"></i>  Add Contact</a>
+    <a id="profile-link" th:href="@{/user/profile}" class="item activate"><i class="fa-regular fa-user"></i>  Your Profile</a>
+    <a id="setting-link" th:href="@{/user/settings}" class="item activate"><i class="fa-solid fa-gear"></i>  Settings</a>
+    <a id="logout-link" th:href="@{/logout}" class="item activate"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
     <div class="divider"></div>
 </div>
 <!--END sidebar-->
@@ -57,7 +61,7 @@
     <i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
     <!--message box-->
     <div th:if="${session.message}" class="container">
-        <div class="alert alert-success text-center" th:classappend="${session.message.type}" role="alert">
+        <div class="alert text-center" th:classappend="'alert-' + ${session.message.type}" role="alert">
             <span th:text="${session.message.content}"></span>
         </div>
     </div>

@@ -35,7 +35,7 @@
                 </table>
                 <div class="description mt-3">
                     <th:block th:text="${contact.description}"></th:block>
-                </div>kp
+                </div>
                 <div class="container text-center mt-3">
                     <button th:onclick="|deleteContact(${contact.cid})|" class="btn btn-danger btn-block">Delete</button>
                     <form th:action="@{'/user/update-contact/'+${contact.cid}}" class="mt-2" method="post">
