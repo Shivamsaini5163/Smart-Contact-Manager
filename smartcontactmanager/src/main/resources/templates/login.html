@@ -24,6 +24,10 @@
 
                         <div th:if="${param.logout}" class="alert alert-success">You have been logged out</div>
 
+                        <div th:if="${param.change}" class="alert alert-success">
+                            <p th:text="${param.change}"></p>
+                        </div>
+
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
